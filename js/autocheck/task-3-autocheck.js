@@ -8,31 +8,53 @@
 
 // ***************************************************************************************************************************
 
+// ПЕРШИЙ ВАРІАНТ ВИРІШЕННЯ
+
+// const findBestEmployee = function (employees) {
+//   'use strict';
+//   // Write code under this line
+//   console.log('Объект сотрудников:', employees);
+
+//   const employeesNames = Object.keys(employees);
+//   console.log('Массив имен сотрудников:', employeesNames);
+
+//   let tasksDone = 0;
+//   let bestEmployee = '';
+
+//   for (const employeeName of employeesNames) {
+//     console.log('Имя сотрудника:', employeeName);
+
+//     if (employees[employeeName] > tasksDone) {
+//       tasksDone = employees[employeeName];
+//       bestEmployee = employeeName;
+
+//       console.log(
+//         `Лучший сотрудник ${bestEmployee} выполнил ${tasksDone} заданий`,
+//       );
+//     }
+//   }
+
+//   return bestEmployee;
+// };
+
+// ДРУГИЙ ВАРІАНТ ВИРІШЕННЯ
+
 const findBestEmployee = function (employees) {
   'use strict';
   // Write code under this line
-  console.log('Объект сотрудников:', employees);
 
-  const employeesNames = Object.keys(employees);
-  console.log('Массив имен сотрудников:', employeesNames);
+  let max = Math.max(...Object.values(employees));
+  console.log('Наибольшее количество выполненых задач:', max);
 
-  let tasksDone = 0;
-  let bestEmployee = '';
-
-  for (const employeeName of employeesNames) {
-    console.log('Имя сотрудника:', employeeName);
-
-    if (employees[employeeName] > tasksDone) {
-      tasksDone = employees[employeeName];
-      bestEmployee = employeeName;
-
-      console.log(
-        `Лучший сотрудник ${bestEmployee} выполнил ${tasksDone} заданий`,
-      );
+  for (let employee in employees) {
+    console.log(
+      `Количество задач, выполненых работником ${employee}:`,
+      employees[employee],
+    );
+    if (employees[employee] === max) {
+      return `Имя работника, выполнившего наибольшее количество задач: ${employee}`;
     }
   }
-
-  return bestEmployee;
 };
 
 // Объекты и ожидаемый результат
